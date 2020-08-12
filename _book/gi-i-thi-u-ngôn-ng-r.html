@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 1 Giới thiệu ngôn ngữ R | Phân tích DỮ LIỆU với R</title>
+  <meta name="description" content="On going" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 1 Giới thiệu ngôn ngữ R | Phân tích DỮ LIỆU với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="On going" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 1 Giới thiệu ngôn ngữ R | Phân tích DỮ LIỆU với R" />
+  
+  <meta name="twitter:description" content="On going" />
+  
+
+<meta name="author" content="Nguyễn Văn Tuấn" />
+
+
+<meta name="date" content="2020-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="l-i-gi-i-thi-u.html"/>
+
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích DỮ LIỆU với R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Lời nói đầu</a></li>
+<li class="chapter" data-level="" data-path="l-i-gi-i-thi-u.html"><a href="l-i-gi-i-thi-u.html"><i class="fa fa-check"></i>Lời giới thiệu</a></li>
+<li class="chapter" data-level="1" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html"><i class="fa fa-check"></i><b>1</b> Giới thiệu ngôn ngữ R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#r-là-gì"><i class="fa fa-check"></i><b>1.1</b> R là gì?</a></li>
+<li class="chapter" data-level="1.2" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#tải-r-xuống-và-cài-đặt-vào-máy-tính"><i class="fa fa-check"></i><b>1.2</b> Tải R xuống và cài đặt vào máy tính</a></li>
+<li class="chapter" data-level="1.3" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#khởi-động-và-ngưng-chạy-r"><i class="fa fa-check"></i><b>1.3</b> Khởi động và ngưng chạy R</a></li>
+<li class="chapter" data-level="1.4" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#packages"><i class="fa fa-check"></i><b>1.4</b> Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#văn-phạm-ngôn-ngữ-r"><i class="fa fa-check"></i><b>1.5</b> “Văn phạm” ngôn ngữ R</a></li>
+<li class="chapter" data-level="1.6" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#cách-đặt-tên-đối-tượng"><i class="fa fa-check"></i><b>1.6</b> Cách đặt tên đối tượng</a></li>
+<li class="chapter" data-level="1.7" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#hỗ-trợ-trong-r"><i class="fa fa-check"></i><b>1.7</b> Hỗ trợ trong R</a></li>
+<li class="chapter" data-level="1.8" data-path="gi-i-thi-u-ngôn-ng-r.html"><a href="gi-i-thi-u-ngôn-ng-r.html#môi-trường-vận-hành"><i class="fa fa-check"></i><b>1.8</b> Môi trường vận hành</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/12542344/Ph-n-t-ch-D-LI-U-V-i-R" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích DỮ LIỆU với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="giới-thiệu-ngôn-ngữ-r" class="section level1" number="1">
+<h1><span class="header-section-number">Chương 1</span> Giới thiệu ngôn ngữ R</h1>
+<div id="r-là-gì" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> R là gì?</h2>
+<p>Nói một cách ngắn gọn, <span class="math inline">\(R\)</span> là một phần mềm sử dụng cho phân tích thống kê và đồ thị. Thật ra, về bản chất, <span class="math inline">\(R\)</span> là ngôn ngữ máy tính đa năng, có thể sử dụng cho nhiều mục tiêu khác nhau, từ tính toán đơn giản, toán học giải trí (recreational mathematics), tính toán ma trận (matrix), đến các phân tích thống kê phức tạp. Vì là một ngôn ngữ, cho nên người ta có thể sử dụng <span class="math inline">\(R\)</span> để phát triển thành các phần mềm chuyên môn cho một vấn đề tính toán chuyên biệt.</p>
+<p>Hai người sáng tạo ra <span class="math inline">\(R\)</span> là hai nhà thống kê học tên là Ross Ihaka và Robert Gentleman. Kể từ khi <span class="math inline">\(R\)</span> ra đời, rất nhiều nhà nghiên cứu thống kê và toán học trên thế giới ủng hộ và tham gia vào việc phát triển <span class="math inline">\(R\)</span>. Chủ trương của những người sáng tạo ra <span class="math inline">\(R\)</span> là theo định hướng mở rộng (Open Access). Cũng một phần vì chủ trương này mà <span class="math inline">\(R\)</span> hoàn toàn miễn phí. Bất cứ ai ở bất cứ nơi nào trên thế giới đều có thể truy nhập và tải toàn bộ mã nguồn của <span class="math inline">\(R\)</span> về máy tính của mình để sử dụng. Cho đến nay, chỉ qua chưa đầy 5 năm phát triển, nhưng có nhiều các nhà thống kê học, toán học, nghiên cứu trong mọi lĩnh vực đã chuyển sang sử dụng <span class="math inline">\(R\)</span> để phân tích dữ liệu khoa học. Trên toàn cầu, đã có một mạng lưới gần một triệu người sử dụng <span class="math inline">\(R\)</span>, và con số này đang tăng theo cấp số nhân. Có thể nói trong vòng 10 năm nữa, chúng ta sẽ không cần đến các phần mềm thống kê đắt tiền như <span class="math inline">\(SAS\)</span>, <span class="math inline">\(SPSS\)</span> hay <span class="math inline">\(Stata\)</span> (các phần mềm này giá có thể lên đến 100.000 USD một năm) để phân tích thống kê nữa, vì tất cả các phân tích đó có thể thực hiện trên <span class="math inline">\(R\)</span>.</p>
+<p>Vì thế, những ai làm nghiên cứu khoa học cần nên học cách sử dụng <span class="math inline">\(R\)</span> cho phân tích thống kê và đồ thị. Chương này sẽ hướng dẫn bạn đọc cách cài đặt và sử dụng <span class="math inline">\(R\)</span>.</p>
+</div>
+<div id="tải-r-xuống-và-cài-đặt-vào-máy-tính" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Tải R xuống và cài đặt vào máy tính</h2>
+<p>Để sử dụng <span class="math inline">\(R\)</span>, việc đầu tiên là chúng ta phải cài đặt <span class="math inline">\(R\)</span> trong máy tính của mình. Để làm việc này, ta phải truy nhập vào mạng và vào website có tên là “Comprehensive <span class="math inline">\(R\)</span> Archive Network” <span class="math inline">\((CRAN)\)</span> sau đây:</p>
+<p><a href="http://cran.R-project.org" class="uri">http://cran.R-project.org</a></p>
+<p>Tài liệu cần tải về, tùy theo phiên bản, nhưng thường có tên bắt đầu bằng mẫu tự <span class="math inline">\(R\)</span> và số phiên bản (version). Chẳng hạn như phiên bản mà tác giả sử dụng vào cuối năm 2005 là 2.2.1, nên tên của tài liệu cần tải là:</p>
+<p><span class="math display">\[R-2.2.1-win32.zip\]</span></p>
+<p>Tài liệu này khoảng 26 MB, và địa chỉ cụ thể để tải là:</p>
+<p><a href="https://cran.r-project.org/bin/windows/base/R-3.6.3-win.exe" class="uri">https://cran.r-project.org/bin/windows/base/R-3.6.3-win.exe</a></p>
+<p>Tại website này, chúng ta có thể tìm thấy rất nhiều tài liệu chỉ dẫn cách sử dụng <span class="math inline">\(R\)</span>, đủ trình độ, từ sơ đẳng đến cao cấp. Nếu chưa quen với tiếng Anh, tài liệu này có thể cung cấp những thông tin cần thiết để sử dụng mà không cần phải đọc các tài liệu khác.</p>
+<p>Khi đã tải <span class="math inline">\(R\)</span> xuống máy tính, bước kế tiếp là cài đặt (set-up) vào máy tính. Để làm việc này, chúng ta chỉ đơn giản nhấn chuột vào tài liệu trên và làm theo hướng dẫn cách cài đặt trên màn hình.</p>
+</div>
+<div id="khởi-động-và-ngưng-chạy-r" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Khởi động và ngưng chạy R</h2>
+<p>Sau khi hoàn tất việc cài đặt, một icon sẽ xuất hiện trên desktop của máy tính. Đến đây thì chúng ta đã sẵn sàng sử dụng <span class="math inline">\(R\)</span>. Có thể nhấp chuột vào icon này và chúng ta sẽ có một cửa sổ như sau:</p>
+<p><img src="_book_media/Figures/1.1.jpg" style="width:0.65625in;height:0.50764in" /></p>
+<p>Khi khởi động <span class="math inline">\(R\)</span>, một giao diện cơ bản sẽ xuất hiện như sau (trên máy Apple Macbook):</p>
+<p><img src="_book_media/Figures/1.2.png" /></p>
+<p><span class="math inline">\(R\)</span> thường được sử dụng dưới dạng <em>“command line”</em>, có nghĩa là chúng ta phải trực tiếp gõ lệnh vào cái prompt màu đỏ trên. Các lệnh phải tuân thủ nghiêm ngặt theo <em>“văn phạm”</em> và ngôn ngữ của <span class="math inline">\(R\)</span>. Chẳng hạn như chúng ta muốn tìm hiểu xem trong <span class="math inline">\(R\)</span> có những dữ liệu đã được cài đặt cho thực hành phân tích, chúng ta có thể dùng hàm <span class="math inline">\(data\)</span> như sau:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb1-1" aria-hidden="true"></a><span class="kw">data</span>()</span></code></pre></div>
+<p>một cửa sổ sẽ được mở ra với một danh sách dữ liệu trong <span class="math inline">\(R\)</span>. Chẳng hạn như chúng ta muốn truy cập dữ liệu <span class="math inline">\(ToothGrowth\)</span> của một nghiên cứu về sự ảnh hưởng của 3 liều lượng vitamin C đến sự tăng trưởng của răng heo. Chúng ta có thể dùng hàm:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb2-1" aria-hidden="true"></a><span class="kw">data</span>(ToothGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb3-1" aria-hidden="true"></a><span class="kw">dim</span>(ToothGrowth)</span></code></pre></div>
+<pre><code>## [1] 60  3</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb5-1" aria-hidden="true"></a><span class="kw">head</span>(ToothGrowth)</span></code></pre></div>
+<pre><code>##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5
+## 5  6.4   VC  0.5
+## 6 10.0   VC  0.5</code></pre>
+<p>Hàm thứ hai, dim, có nghĩa là báo cho biết số dòng (60) và số cột (3) của dữ liệu <span class="math inline">\(ToothGrowth\)</span>. Hàm kế tiếp <span class="math inline">\(head\)</span>, liệt kê 6 dòng đầu tiên của dữ liệu. Chúng ta thấy dữ liệu này có 3 cột hay biến số:</p>
+<ul>
+<li>biến số đầu tiên là độ dài của răng (cm);</li>
+<li>biến thứ hai là hai cách cho heo dùng vitamin C: cách thứ nhất là cho ăn cam, tiết tắt là OJ, và cách thứ hai là qua ascobic acid, viết tắt VC; và</li>
+<li>biến thứ ba là nồng độ gồm các giá trị 0.5, 1.0, và 2 mg.</li>
+</ul>
+<p>Để ‘khai thác’ dữ liệu, chúng ta cần phải biết một số hàm căn bản cho phân tích và sẽ được giải thích trong sách này. Chẳng hạn như chúng ta muốn biết những chỉ số cơ bản về dữ liệu, chỉ cần với hàm summary có thể cung cấp các chỉ số như tối thiểu, tối đa, trung vị, bách phân vị, hoặc đối với biến phân nhóm thì số đếm:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb7-1" aria-hidden="true"></a><span class="kw">summary</span>(ToothGrowth)</span></code></pre></div>
+<pre><code>##       len        supp         dose      
+##  Min.   : 4.20   OJ:30   Min.   :0.500  
+##  1st Qu.:13.07   VC:30   1st Qu.:0.500  
+##  Median :19.25           Median :1.000  
+##  Mean   :18.81           Mean   :1.167  
+##  3rd Qu.:25.27           3rd Qu.:2.000  
+##  Max.   :33.90           Max.   :2.000</code></pre>
+<p>Để so sánh độ dài của răng theo liều lượng vitamin C, chỉ cần với hàm <span class="math inline">\(boxplot\)</span>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb9-1" aria-hidden="true"></a><span class="kw">boxplot</span>(ToothGrowth<span class="op">$</span>len <span class="op">~</span><span class="st"> </span>ToothGrowth<span class="op">$</span>dose)</span></code></pre></div>
+<p><img src="Phan-tich-DU-LIEU-voi-R_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>hoặc thêm màu cho biểu đồ:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb10-1" aria-hidden="true"></a><span class="kw">boxplot</span>(ToothGrowth<span class="op">$</span>len <span class="op">~</span><span class="st"> </span>ToothGrowth<span class="op">$</span>dose, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<p><img src="Phan-tich-DU-LIEU-voi-R_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Qua một số hàm / lệnh trên, chúng ta thấy một số đặc điểm chính của cú pháp <span class="math inline">\(R\)</span> như sau:</p>
+<ul>
+<li><em>mỗi hàm có đối số hay argument</em>: chẳng hạn như <span class="math inline">\(dim(ToothGrowth)\)</span>,
+thì <span class="math inline">\(dim\)</span> là tên của hàm và <span class="math inline">\(ToothGrowth\)</span> là đối số;</li>
+<li><em>đối số phải có tên, và R phân biệt giữa chữ hoa và chữ thường</em>:
+Library và library khác nhau;</li>
+<li><em>biến số trong dữ liệu cần phải có dấu</em> $: ví dụ như
+<span class="math inline">\(ToothGrowth\$len\)</span> có nghĩa là biến <span class="math inline">\(len\)</span> thuộc dữ liệu <span class="math inline">\(ToothGrowth\)</span>;</li>
+</ul>
+<p>Một văn phạm khác nữa là khi có hai chữ rời nhau, <span class="math inline">\(R\)</span> thường dùng dấu chấm để thay vào khoảng trống, chẳng hạn như <span class="math inline">\(data.frame, t.test, read.table,v.v\)</span>…Điều này rất quan trọng, nếu không để ý sẽ làm mất thì giờ của người sử dụng.</p>
+<p>Nếu lệnh gõ ra đúng <em>“văn phạm”</em> thì <span class="math inline">\(R\)</span> sẽ cho chúng ta một cái prompt khác hay cho ra kết quả nào đó (tùy theo lệnh); nếu lệnh không đúng văn phạm thì <span class="math inline">\(R\)</span> sẽ cho ra một thông báo ngắn là không đúng hay không hiểu. Ví dụ, nếu chúng ta gõ:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb11-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>) </span></code></pre></div>
+<p>thì <span class="math inline">\(R\)</span> sẽ hiểu và làm theo lệnh đó, rồi cho chúng ta một prompt khác:</p>
+<p>&gt;</p>
+<p>Nhưng nếu chúng ta gõ</p>
+<p>&gt; R is great</p>
+<p><span class="math inline">\(R\)</span> sẽ không “đồng ý” với lệnh này, vì ngôn ngữ này không có trong thư viện của <span class="math inline">\(R\)</span>, một thông báo sau đây sẽ xuất hiện:</p>
+<p>&gt; Error: unexpected symbol in “R is”</p>
+<p>&gt;</p>
+<p>Khi muốn rời khỏi <span class="math inline">\(R\)</span>, chúng ta có thể đơn giản nhấn nút chéo (x) bên góc trái của cửa sổ, hay gõ lệnh <span class="math inline">\(q()\)</span>.</p>
+</div>
+<div id="packages" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Packages</h2>
+<p><span class="math inline">\(R\)</span> cung cấp cho chúng ta một “ngôn ngữ” máy tính và một số <em>function</em> để làm các phân tích căn bản và đơn giản. Nếu muốn thực hiện những phân tích phức tạp hơn, chúng ta cần phải tải về máy tính một số <em>package</em> khác. <span class="math inline">\(Package\)</span> là một phần mềm nhỏ được các nhà thống kê phát triển để giải quyết một vấn đề cụ thể, và có thể chạy trong hệ thống <span class="math inline">\(R\)</span>. Chẳng hạn như để phân tích hồi qui tuyến tính, <span class="math inline">\(R\)</span> có function lm để sử dụng cho mục đích này, nhưng để làm các phân tích sâu hơn và phức tạp hơn, chúng ta cần đến các package như <em>lme4</em>. Các package này cần phải được tải về máy tính và cài đặt.</p>
+<p>Địa chỉ để tải các package vẫn là: <a href="http://cran.r-project.org" class="uri">http://cran.r-project.org</a>, rồi bấm vào phần “<a href="http://cran.au.r-project.org/src/contrib/PACKAGES.html">Packages</a>” xuất hiện bên trái của mục lục trang web. Một số package cần tải về máy tính để sử dụng cho các ví dụ trong sách này là:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Tên package</strong></th>
+<th align="left"><strong>Chức năng</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">readxl</td>
+<td align="left">Package dùng cho đọc dữ liệu từ excel</td>
+</tr>
+<tr class="even">
+<td align="left">foreign</td>
+<td align="left">Dùng để nhập dữ liệu từ các phần mềm khác như SPSS, Stata, SAS, v.v…</td>
+</tr>
+<tr class="odd">
+<td align="left">dplyr</td>
+<td align="left">Dùng cho biên tập dữ liệu</td>
+</tr>
+<tr class="even">
+<td align="left">tidyr</td>
+<td align="left">Dùng cho biên tập dữ liệu</td>
+</tr>
+<tr class="odd">
+<td align="left">magrittr</td>
+<td align="left">Dùng cho lập chương</td>
+</tr>
+<tr class="even">
+<td align="left">Hmisc</td>
+<td align="left">Một số phương pháp mô hình dữ liệu của F. Harrell</td>
+</tr>
+<tr class="odd">
+<td align="left">rms</td>
+<td align="left">Package kèm theo cuốn sách về xây dựng mô hình tiên lượng của F. Harrell</td>
+</tr>
+<tr class="even">
+<td align="left">survival</td>
+<td align="left">Phân tích sống còn</td>
+</tr>
+<tr class="odd">
+<td align="left">Rmeta, metafor</td>
+<td align="left">Dùng cho phân tích tổng hợp (meta-analysis)</td>
+</tr>
+<tr class="even">
+<td align="left">BMA</td>
+<td align="left">Bayesian Model Average</td>
+</tr>
+<tr class="odd">
+<td align="left">psych</td>
+<td align="left">Package đa năng nhưng có nhiều chức năng cho phân tích tâm lí học.</td>
+</tr>
+<tr class="even">
+<td align="left">Zelig</td>
+<td align="left">Package dùng cho các phân tích thống kê trong lĩnh vực xã hội học</td>
+</tr>
+<tr class="odd">
+<td align="left">Epi</td>
+<td align="left">Dùng cho các phân tích dịch tễ học</td>
+</tr>
+<tr class="even">
+<td align="left">epitools</td>
+<td align="left">Một package khác chuyên cho các phân tích dịch tễ học</td>
+</tr>
+<tr class="odd">
+<td align="left">epiDisplay</td>
+<td align="left">Một package chuyên cho các phân tích dịch tễ học</td>
+</tr>
+<tr class="even">
+<td align="left">genetics</td>
+<td align="left">Package dùng cho phân tích số liệu di truyền học</td>
+</tr>
+<tr class="odd">
+<td align="left">ggplot2</td>
+<td align="left">Package dùng cho biểu đồ chất lượng cao</td>
+</tr>
+<tr class="even">
+<td align="left">explore</td>
+<td align="left">Phân tích mô tả</td>
+</tr>
+<tr class="odd">
+<td align="left">DescTools</td>
+<td align="left">Phân tích mô tả bằng bảng số liệu</td>
+</tr>
+<tr class="even">
+<td align="left">table1</td>
+<td align="left">Phân tích mô tả bằng bảng số liệu đơn giản</td>
+</tr>
+<tr class="odd">
+<td align="left">compareGroups</td>
+<td align="left">Phân tích mô tả bằng bảng số liệu</td>
+</tr>
+</tbody>
+</table>
+<p>Khi máy đã được nối mạng, chúng ta có thể cài đặt những package này bằng hàm <span class="math inline">\(install.packages\)</span>. Ví dụ để cài đặt package <span class="math inline">\(ggplot2\)</span>, chúng ta gõ:</p>
+<p><span class="math display">\[install.packages(&quot;ggplot2&quot;, dependencies=T)\]</span></p>
+<p>Trong hàm trên, chú ý tên của package phải để trong ngoặc kép. Đối số <span class="math inline">\(dependencies=T\)</span> yêu cầu <span class="math inline">\(R\)</span> cài đặt cả những package phụ thuộc vào <span class="math inline">\(ggplot2\)</span>. Chúng ta cũng có thể cài đặt nhiều package trong một hàm:</p>
+<p><span class="math display">\[install.packages(c(&quot;ggplot2&quot;, &quot;table1&quot;, &quot;DescTools&quot;, &quot;compareGroups&quot;))\]</span></p>
+</div>
+<div id="văn-phạm-ngôn-ngữ-r" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> “Văn phạm” ngôn ngữ R</h2>
+<p>“Văn phạm” chung của <span class="math inline">\(R\)</span> là một lệnh (command) hay function (thỉnh thoảng đề cập đến là “hàm”). Mà đã là hàm thì phải có thông số; cho nên theo sau hàm là những thông số mà chúng ta phải cung cấp. Chẳng hạn như:</p>
+<p><span class="math display">\[reg &lt;- lm(y ~ x)\]</span></p>
+<p>thì <span class="math inline">\(reg\)</span> là một object, còn <span class="math inline">\(lm\)</span> là một hàm, và <span class="math inline">\(y ~ x\)</span> là thông số hay đối số của hàm. Hay:</p>
+<p><span class="math display">\[setwd(&quot;c:/works/stats&quot;)\]</span>
+thì <span class="math inline">\(setwd\)</span> là một hàm, còn <span class="math inline">\(c:/works/stats\)</span> là thông số của hàm. Chú ý <span class="math inline">\(R\)</span> dùng dấu ‘straight quote’ (như " “) chứ không phải dấu ngoặc vòng (“”).</p>
+<p>Để biết một hàm cần có những thông số nào, chúng ta dùng lệnh <span class="math inline">\(args(x)\)</span>, (<span class="math inline">\(args\)</span> viết tắt chữ <span class="math inline">\(arguments\)</span>) mà trong đó x là một hàm chúng ta cần biết:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb12-1" aria-hidden="true"></a><span class="kw">args</span>(lm)</span></code></pre></div>
+<pre><code>## function (formula, data, subset, weights, na.action, method = &quot;qr&quot;, 
+##     model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, 
+##     contrasts = NULL, offset, ...) 
+## NULL</code></pre>
+<p><span class="math inline">\(R\)</span> là một ngôn ngữ “đối tượng” (object oriented language). Điều này có nghĩa là các dữ liệu trong <span class="math inline">\(R\)</span> được chứa trong object. Định hướng này cũng có vài ảnh hưởng đến cách viết của <span class="math inline">\(R\)</span>. Chẳng hạn như thay vì viết <span class="math inline">\(x = 5\)</span> như thông thường chúng ta vẫn viết, thì <span class="math inline">\(R\)</span> yêu cầu viết là <span class="math inline">\(x == 5\)</span>.</p>
+<p>Đối với <span class="math inline">\(R\)</span>, <span class="math inline">\(x = 5\)</span> tương đương với <span class="math inline">\(x &lt;- 5\)</span>. Cách viết sau (dùng kí hiệu <span class="math inline">\(&lt;-\)</span>) được khuyến khích hơn là cách viết trước (<span class="math inline">\(=\)</span>). Chẳng hạn như:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb14-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>) </span></code></pre></div>
+<p>có nghĩa là mô phỏng 10 số liệu và chứa trong object x. Chúng ta cũng có thể viết <span class="math inline">\(x = rnorm(10)\)</span>.</p>
+<p>Một số kí hiệu hay dùng trong <span class="math inline">\(R\)</span> là:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Kí hiệu:</strong></th>
+<th align="left"><strong>Mô tả:</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">x == 5 x</td>
+<td align="left">bằng 5</td>
+</tr>
+<tr class="even">
+<td align="left">x != 5 x</td>
+<td align="left">không bằng 5</td>
+</tr>
+<tr class="odd">
+<td align="left">y &lt; x y</td>
+<td align="left">nhỏ hơn x</td>
+</tr>
+<tr class="even">
+<td align="left">x &gt; y x</td>
+<td align="left">lớn hơn y</td>
+</tr>
+<tr class="odd">
+<td align="left">z &lt;= 7 z</td>
+<td align="left">nhỏ hơn hoặc bằng 7</td>
+</tr>
+<tr class="even">
+<td align="left">p &gt;= 1 p</td>
+<td align="left">lớn hơn hoặc bằng 1</td>
+</tr>
+<tr class="odd">
+<td align="left">is.na(x) C</td>
+<td align="left">ó phải x là biến số missing</td>
+</tr>
+<tr class="even">
+<td align="left">A &amp; B</td>
+<td align="left">A và B (AND)</td>
+</tr>
+<tr class="odd">
+<td align="left">A | B</td>
+<td align="left">A hoặc B (OR)</td>
+</tr>
+<tr class="even">
+<td align="left">!</td>
+<td align="left">Không là (NOT)</td>
+</tr>
+</tbody>
+</table>
+<p>Chúng ta sẽ làm quen với cách sử dụng các kí hiệu vận hành này trong chương sau.</p>
+<p>Với <span class="math inline">\(R\)</span>, tất cả các câu chữ hay lệnh sau kí hiệu # đều không có hiệu ứng, vì # là kí hiệu dành cho người sử dụng thêm vào các ghi chú, ví dụ:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb15-1" aria-hidden="true"></a><span class="co"># lệnh sau đây sẽ mô phỏng 10 giá trị normal</span></span>
+<span id="cb15-2"><a href="gi-i-thi-u-ngôn-ng-r.html#cb15-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>) </span></code></pre></div>
+</div>
+<div id="cách-đặt-tên-đối-tượng" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Cách đặt tên đối tượng</h2>
+<p>Đặt tên một đối tượng (object) hay một biến số (variable) trong <span class="math inline">\(R\)</span> khá linh hoạt, vì <span class="math inline">\(R\)</span> không có nhiều giới hạn như các phần mềm khác. Tên một object phải được viết liền nhau (tức không được cách rồi bằng một khoảng trống). Chẳng hạn như <span class="math inline">\(R\)</span> chấp nhận <span class="math inline">\(myobject\)</span> nhưng không chấp nhận <span class="math inline">\(my object\)</span>.</p>
+<p>&gt; myobject &lt;- rnorm(10)</p>
+<p>&gt; my object &lt;- rnorm(10)</p>
+<p>&gt; Error: syntax error in “my object”</p>
+<p>Nhưng đôi khi tên myobject khó đọc, cho nên chúng ta nên tách rời bằng “.” như <span class="math inline">\(my.object\)</span>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb16-1" aria-hidden="true"></a>my.object &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
+<p>Một điều quan trọng cần lưu ý là <span class="math inline">\(R\)</span> phân biệt mẫu tự viết hoa và viết thường. Cho nên <span class="math inline">\(My.object\)</span> khác với <span class="math inline">\(my.object\)</span>. Ví dụ:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb17-1" aria-hidden="true"></a>My.object.u &lt;-<span class="st"> </span><span class="dv">15</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb18-1" aria-hidden="true"></a>my.object.L &lt;-<span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb19-1" aria-hidden="true"></a>My.object.u <span class="op">+</span><span class="st"> </span>my.object.L</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p>Một vài điều cần lưu ý khi đặt tên trong <span class="math inline">\(R\)</span> là:</p>
+<ul>
+<li>Không nên đặt tên một biến số hay variable bằng kí hiệu <span class="math inline">\(“\_”\)</span> (underscore) như <span class="math inline">\(my\_object\)</span> hay <span class="math inline">\(my-object\)</span>.</li>
+<li>Không nên đặt tên một object giống như một biến số trong một dữ liệu. Ví dụ, nếu chúng ta có một <span class="math inline">\(data.frame\)</span> (dữ liệu hay dataset) với biến số <span class="math inline">\(age\)</span> trong đó, thì không nên có một object trùng tên <span class="math inline">\(age\)</span>, tức là không nên viết: <span class="math inline">\(age\)</span> <span class="math inline">\(&lt;-\)</span> <span class="math inline">\(age\)</span>. Tuy nhiên, nếu data.frame tên là <span class="math inline">\(data\)</span> thì chúng ta có thể đề cập đến biến số <span class="math inline">\(age\)</span> với một kí tự $ như sau: <span class="math inline">\(data\$age\)</span>. (Tức là biến số <span class="math inline">\(age\)</span> trong data.frame <span class="math inline">\(data\)</span>), và trong trường hợp đó, <span class="math inline">\(age\)</span> <span class="math inline">\(&lt;-\)</span> <span class="math inline">\(data\$age\)</span> có thể chấp nhận được.</li>
+</ul>
+</div>
+<div id="hỗ-trợ-trong-r" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Hỗ trợ trong R</h2>
+<p>Ngoài lệnh <span class="math inline">\(args()\)</span> <span class="math inline">\(R\)</span> còn cung cấp lệnh <span class="math inline">\(help()\)</span> để người sử dụng có thể hiểu “văn phạm” của từng hàm. Chẳng hạn như muốn biết hàm <span class="math inline">\(lm\)</span> có những thông số (arguments) nào, chúng ta chỉ đơn giản lệnh:</p>
+<p>&gt; help(lm)</p>
+<p>hay</p>
+<p>&gt; ?lm</p>
+<p>Một cửa sổ sẽ hiện ra bên phải của màn hình chỉ rõ cách sử dụng ra sao và thậm chí có cả ví dụ. Bạn đọc có thể đơn giản copy và dán ví dụ vào <span class="math inline">\(R\)</span> để xem cách vận hành.</p>
+<p>Trước khi sử dụng <span class="math inline">\(R\)</span>, ngoài sách này nếu cần bạn đọc có thể đọc qua phần chỉ dẫn có sẵn trong <span class="math inline">\(R\)</span> bằng cách chọn mục help và sau đó chọn Html help như hình dưới đây để biết thêm chi tiết. Bạn đọc cũng có thể copy và dán các lệnh trong mục này vào <span class="math inline">\(R\)</span> để xem cho biết cách vận hành của <span class="math inline">\(R\)</span>.</p>
+<p>Thay vì chọn mục trên, bạn đọc cũng có thể đơn giản lệnh:</p>
+<p>&gt; help.start()</p>
+<p>và một cửa sổ sẽ xuất hiện chỉ dẫn toàn bộ hệ thống <span class="math inline">\(R\)</span>.</p>
+<p>Hàm <span class="math inline">\(apropos\)</span> cũng rất có ích vì nó cung cấp cho chúng ta tất cả các hàm trong <span class="math inline">\(R\)</span> bắt đầu bằng kí tự mà chúng ta muốn tìm. Chẳng hạn như chúng ta muốn biết hàm nào trong <span class="math inline">\(R\)</span> có kí tự “lm” thì chỉ đơn giản lệnh:</p>
+<p>&gt; apropos(lm)</p>
+<p>Và <span class="math inline">\(R\)</span> sẽ báo cáo các hàm với kí tự lm như sau có sẵn trong <span class="math inline">\(R\)</span>.</p>
+</div>
+<div id="môi-trường-vận-hành" class="section level2" number="1.8">
+<h2><span class="header-section-number">1.8</span> Môi trường vận hành</h2>
+<p>Dữ liệu phải được chứa trong một khu vực (directory) của máy tính. Trước khi sử dụng <span class="math inline">\(R\)</span>, có lẽ cách hay nhất là tạo ra một directory để chứa dữ liệu, chẳng hạn như c:\works\stats. Để <span class="math inline">\(R\)</span> biết dữ liệu nằm ở đâu, chúng ta sử dụng lệnh <span class="math inline">\(setwd\)</span> (set working directory) như sau:</p>
+<p>&gt; setwd(“c:/works/stats”)</p>
+<p>Lệnh trên báo cho <span class="math inline">\(R\)</span> biết là dữ liệu sẽ chứa trong directory có tên là c:\works\stats. Chú ý rằng, <span class="math inline">\(R\)</span> dùng forward slash “/” chứ không phải backward slash “\” như trong hệ thống Windows.</p>
+<p>Chú ý rằng <span class="math inline">\(R\)</span> có khả năng đọc dữ liệu trực tiếp từ mạng (từ các website). Do đó, chúng ta cũng có thể dùng lệnh setwd để báo cho <span class="math inline">\(R\)</span> biết rằng chúng ta làm việc trực tiếp trên mạng như trong lệnh sau đây:</p>
+<p>&gt; setwd(“<a href="http://www.r.ykhoanet.com/" class="uri">http://www.r.ykhoanet.com/</a>”)</p>
+<p>Để biết hiện nay, <span class="math inline">\(R\)</span> đang “làm việc” ở directory nào, chúng ta chỉ cần lệnh:</p>
+<p>&gt; getwd()</p>
+<p>&gt; [1] “C:/Program Files/R/R-2.2.1”</p>
+<p>Cái prompt mặc định của <span class="math inline">\(R\)</span> là <span class="math inline">\(“&gt;”\)</span>. Nhưng nếu chúng ta muốn có một prompt khác theo cá tính cá nhân, chúng ta có thể thay thế :</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb21-1" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">prompt=</span><span class="st">&quot;R&gt; &quot;</span>)</span></code></pre></div>
+<p>R&gt;</p>
+<p>Hay:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb22-1" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">prompt=</span><span class="st">&quot;Tuan&gt; &quot;</span>)</span></code></pre></div>
+<p>Tuan&gt;</p>
+<p>Màn ảnh <span class="math inline">\(R\)</span> mặc định là 80 kí tự (characters), nhưng nếu chúng ta muốn màn ảnh rộng hơn, thì chỉ cần đưa ra lựa chọn như:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb23-1" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">width=</span><span class="dv">100</span>)</span></code></pre></div>
+<p>Hay muốn <span class="math inline">\(R\)</span> trình bày các số liệu ở dạng 3 số thập phân:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb24-1" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">3</span>)</span></code></pre></div>
+<p>Các lựa chọn và thay đổi này có thể dùng lệnh <span class="math inline">\(options()\)</span>. Để biết các thông số hiện tại của <span class="math inline">\(R\)</span> là gì, chúng ta chỉ cần lệnh:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb25-1" aria-hidden="true"></a><span class="kw">options</span>()</span></code></pre></div>
+<p>Tìm hiểu ngày tháng:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="gi-i-thi-u-ngôn-ng-r.html#cb26-1" aria-hidden="true"></a><span class="kw">Sys.Date</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2020-08-12&quot;</code></pre>
+<hr />
+<p>Trong chương này, các bạn đã làm quen với môi trường vận hành của <span class="math inline">\(R\)</span>. Như có thể thấy, đó là một môi trường tương tác, hiểu theo nghĩa bạn gõ một lệnh và <span class="math inline">\(R\)</span> báo cáo kết quả của lệnh đó. Nếu lệnh sai cú pháp thì <span class="math inline">\(R\)</span> cũng sẽ báo cáo có lỗi. Môi trường tương tác rất tốt để chúng ta vừa học vừa thực hành, và dễ cảm nhận được ý nghĩa của việc học.</p>
+<p>Tuy nhiên, kinh nghiệm thực tế cho thấy lần đầu tiên sử dụng <span class="math inline">\(R\)</span> sẽ làm cho các bạn lúng túng vì có thể gõ lệnh sai, hay tên biến số không đúng, hay không nhớ biến số, v.v. Do đó, thay vì làm việc một cách tương tác, các bạn có thể làm việc trong môi trường ‘thân thiện’ hơn qua hệ thống <span class="math inline">\(RStudio\)</span> (<a href="https://rstudio.com/" class="uri">https://rstudio.com/</a>) và công cụ <span class="math inline">\(RMarkdown\)</span> (trong <span class="math inline">\(RStudio\)</span>). <span class="math inline">\(RStudio\)</span> có thể xem là một phần mềm được xây dựng trên nền tảng <span class="math inline">\(R\)</span> nhưng có các ‘menu’ và công cụ chuyên dụng giúp cho người sử dụng <span class="math inline">\(R\)</span> có thể lưu trữ các mã phân tích, đảm bảo tính tái lập của kết quả phân tích. <span class="math inline">\(RStudio\)</span> và <span class="math inline">\(RMarkdown\)</span> là hai công cụ quan trọng và sẽ được giới thiệu trong một chương 25.</p>
+<p><strong>Chú thích:</strong></p>
+<p>Nếu cần thêm chi tiết, bạn đọc có thể tham khảo một số sách giới thiệu ngôn ngữ R dễ đọc (theo ý kiến của tôi) như sau:</p>
+<ol style="list-style-type: decimal">
+<li>Peter Dalgaard: <em>Introductory Statistics with R</em>. Springer 2008.</li>
+<li>Michael Crawley: <em>Statistics – an introduction using R</em>. Wiley 2005</li>
+<li>Daniela Witten, Gareth James, Robert Tibshirani, Trevor Hastie: <em>An Introduction to Statistical Learning: With Applications in R</em>. Springer 2017.</li>
+<li>Frank Harrell: <em>Regression Modelling Strategies</em>. Springer 2015.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="l-i-gi-i-thi-u.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/12542344/Ph-n-t-ch-D-LI-U-V-i-R/edit/master/01.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Phan tich DU LIEU voi R.pdf", "Phan tich DU LIEU voi R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

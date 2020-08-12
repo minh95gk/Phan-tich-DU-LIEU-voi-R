@@ -1,0 +1,23 @@
+# Lời giới thiệu {-}
+
+**(nhân dịp tái bản 2020)**
+
+Cuốn sách bạn đang cầm trên tay đã qua nhiều lần tái bản kể từ lần xuất bản năm 2014. Trong thời gian đó, rất nhiều tiến bộ trong khoa học thống kê, và theo sau là những phát triển trong ngôn ngữ R. Một trong những phát triển gần đây là "Khoa học Dữ liệu" (Data Science). Trong thực tế, định nghĩa của Khoa học Dữ liệu chưa rõ ràng, nhưng có thể hiểu đó là một chuyên ngành chiết xuất kiến thức từ dữ liệu, nhưng đó lại là một định nghĩa của Khoa học Thống kê. Khoa học Dữ liệu thật ra là một sự tích hợp giữa tin học và thống kê học, và với cách hiểu đó, R là một phương tiện của Khoa học Dữ liệu.
+
+Lần tái bản này, tôi cố gắng cập nhật những phát triển mới đó đến bạn đọc. Theo đó, các chương liên quan đến biên tập dữ liệu đã được viết lại để giúp bạn đọc phân tích những dữ liệu phức tạp một cách hữu hiệu hơn. Hiển thị dữ liệu (data visualization) là một kĩ năng không thể thiếu được đối với một chuyên gia về khoa học dữ liệu. Do đó, trong lần tái bản này, tôi đã viết lại chương về hiển thị dữ liệu đầy đủ hơn và chi tiết hơn. Tôi hi vọng rằng bạn đọc sẽ tìm thấy một nguồn tham khảo dễ hiểu và thực hành từ các chương mới. 
+
+Có thể xem thống kê học là một cách suy nghĩ. Cũng là một giả thuyết khoa học, có người suy nghĩ theo mô thức định tính, và có người theo mô thức định lượng. Suy nghĩ theo mô hình định lượng bắt đầu từ câu hỏi nghiên cứu, phát biểu giả thuyết, thiết kế thí nghiệm, phân tích dữ liệu và diễn giải kết quả phân tích. Tôi là một nhà khoa học thực nghiệm (chứ không phải nhà thống kê học); do đó, tôi viết cuốn sách này từ quan điểm của người sử dụng thống kê học như là một phương tiện suy nghĩ. Đó chính là lí do tôi dùng rất nhiều dữ liệu nghiên cứu để minh hoạ cho suy nghĩ thống kê. Những ví dụ đó có thể nhiều trong y khoa, nhưng ứng dụng đòi hỏi sáng tạo, và tôi tin rằng bạn đọc sẽ nhìn thấy cách suy nghĩ trong y khoa cho chuyên ngành của các bạn. 
+
+Tôi rất vui khi biết được cuốn sách này được nhiều bạn đọc trong và ngoài nước chào đón nồng nhiệt. Gần như tuần nào tôi cũng nhận được email từ bạn đọc, một số là sinh viên và nghiên cứu sinh từ nước ngoài, nói rằng cuốn sách đã giúp các bạn ấy trong việc học hành và nghiên cứu. Một số bài báo khoa học đã được công bố qua áp dụng những phương pháp được giới thiệu trong sách. Có thể nói cuốn sách đã giúp nâng cao năng suất khoa học và sự hiện diện của khoa học Việt Nam trên trường quốc tế. Đó là một niềm vui rất lớn đối với tôi. 
+
+Tôi xin nhân dịp này bày tỏ lòng cảm ơn chân tình đến rất nhiều bạn đọc xa gần đã viết thư cho tôi vừa động viên, vừa góp ý, và chỉnh sửa những chỗ chưa đúng hay chưa chính xác. In sách mà có bạn đọc chào đón đã là một hạnh phúc, lại có nhiều bạn đọc góp ý và chỉnh sửa thì đó là một vinh hạnh cho tôi. Xin các bạn nhận nơi đây lòng biết ơn sâu sắc. 
+
+Khoa học ngày nay càng ngày càng trở nên 'trực tuyến', hiểu theo nghĩa tương tác giữa tác giả và bạn đọc diễn ra trên không gian mạng. Tôi xin giới thiệu đến bạn đọc một kênh chuyên giảng về phân tích dữ liệu dựa vào cuốn sách này trên youtube, nơi bạn đọc có thể tương tác với tôi:  
+
+https://www.youtube.com/user/drnguyenvtuan
+
+*Sydney, ngày 20/4/2020*
+
+*(Những ngày cách li vì dịch Vũ Hán)*
+
+*Nguyễn Văn Tuấn*
