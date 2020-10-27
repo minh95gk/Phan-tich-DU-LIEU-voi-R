@@ -5,8 +5,8 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Phân tích DỮ LIỆU với R</a></li>
       after: |
-        <li><a href="https://github.com/12542344/Ph-n-t-ch-D-LI-U-V-i-R" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/12542344/Ph-n-t-ch-D-LI-U-V-i-R/edit/master/%s
+        <li><a href="https://github.com/12542344/Phan-tich-DU-LIEU-voi-R" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/12542344/Phan-tich-DU-LIEU-voi-R/edit/master/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

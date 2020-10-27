@@ -1,0 +1,528 @@
+# Biên tập dữ liệu {#Bien-tap-du-lieu}
+
+NOT FINISHED, MISSING DATA
+
+Biên tập số liệu ở đây không có nghĩa là thay đổi số liệu gốc (vì đó là một tội lớn, một sự gian dối trong khoa học không thể chấp nhận được), mà chỉ có nghĩa tổ chức số liệu sao cho $R$ có thể phân tích một cách hữu hiệu. Nhiều khi trong phân tích thống kê, chúng ta cần phải tập trung số liệu thành một nhóm, hay tách rời thành thành nhiều nhóm, hay thay thế từ kí tự (characters) sang số (numeric) cho tiện việc tính toán. Chương này sẽ bàn qua một số lệnh căn bản cho việc biên tập số liệu.
+
+## Phân biệt biến số
+
+Cũng như các chương trình phân tích dữ liệu khác (như $SAS$, $SPSS$, $Stata$), $R$ phân biệt số liệu theo các thể loại. Có 2 thể loại chính:
+
+**Biến liên tục** (continuous variable): Trong $R$, các biến này được gọi là *numeric*. Ví dụ như độ tuổi, chiều cao, cân nặng, v.v. được xem là biến liên tục. Chúng ta có thể tính các chỉ số thống kê như số trung bình, độ lệch chuẩn, bách phân vị trên các biến liên tục.
+
+**Biến phân nhóm** (categorical variable): Trong $R$, các biến này được gọi là *factor*. Ví dụ tiêu biểu là giới tính có giá trị \"Male\" và \"Female\" được xem là biến định danh hay biến phân nhóm. Dĩ nhiên, chúng ta không thể tính trung bình và độ lệch chuẩn cho các biến này, mà chỉ có thể tính tỉ lệ (phần trăm).
+
+Cần phải nói thêm rằng, các biến tuy có giá trị là số (như 1, 2, 3) nhưng cũng có thể là biến phân nhóm. Các biến này, vì có giá trị số, nên chúng ta có thể tính các chỉ số trung bình, độ lệch chuẩn, dù kết quả tính toán hoàn toàn không có ý nghĩa. Để báo cho $R$ biết các biến này là *factor,* chúng ta cần phải dùng hàm `as.factor`. Ví dụ, chúng ta có biến `education` phản ảnh trình độ học vấn: 1 là tiểu học, 2 là trung học, và 3 là đại học; để hoán chuyển `education` sang biến factor, chúng ta có thể tạo ra một biến mới, tạm gọi là edu như sau:
+
+```{r, error=FALSE, eval=FALSE}
+edu = as.factor(education)
+```
+
+## Làm việc với biến số và dấu
+
+Một cách ngắn gọn, mỗi data.frame trong R là một ma trận. Ma trận có dòng và cột. Do đó, một dataframe có nhiều dòng (observation hay row) và nhiều cột (variable hay column). Ví dụ như dataframe data có 4 dòng và 3 biến số:
+
+```{r, echo=FALSE}
+data = data.frame(age = c(18,21,35,50)
+                 ,sex = c("M","F","M","F")
+                 ,weight = c(60.3,48.5,62.0,47.2))
+```
+
+```{r}
+dim(data)
+```
+
+Chúng ta có thể đề cập đến mỗi giá trị trong dataframe bằng công thức ma trận. Nên nhớ là trong ma trận, dòng được đề cập trước và cột sau. Chẳng hạn như (chú ý ngoặc vuông):
+
+```{r}
+data[1, 3] #là giá trị 60.3 (dòng 1, cột 3)
+```
+
+```{r}
+data[4, 2] #là giá trị F (dòng 4, cột 2)
+```
+
+```{r}
+data[4, ] #báo cáo số liệu dòng số 4
+```
+
+```{r}
+data[, 2] #báo cáo số liệu của cột số 2
+```
+
+### Dấu dollar ($){-}
+
+Mỗi dataframe có nhiều cột, và dấu `$` dùng để đề cập tên biến gắn liền với một dataframe. Chẳng hạn như khi chúng ta viết `data$age`, thì cú pháp này có nghĩa là `age` là tên biến số trong dataframe `data`.
+
+Cách dùng `$` rất quan trọng vì nếu có nhiều dataframe cùng được vận hành, thì dấu `$` dùng để phân biệt biến số nào thuộc về dataframe nào. Ví dụ sau đây sẽ thấy hiệu quả của việc dùng dấu `$`. Trong ví dụ thứ nhất, chúng ta có 4 biến số (`v1`, `v2`, `v3`, `v4`) và tính tổng số (`sum`):
+
+```{r, eval=FALSE}
+v1 = c(1,3,5)
+v2 = c(3,4,7)
+v3 = c(6,7,8)
+v4 = c(7,9,0)
+dat = data.frame(v1,v2,v3,v4)
+attach(dat)
+dat$sum = dat$v1 + dat$v3
+sum1 = v1 + v3
+dat 
+```
+
+Kết quả là:
+
+```{r, echo=FALSE, message=FALSE}
+v1 = c(1,3,5)
+v2 = c(3,4,7)
+v3 = c(6,7,8)
+v4 = c(7,9,0)
+dat = data.frame(v1,v2,v3,v4)
+attach(dat)
+dat$sum = dat$v1 + dat$v3
+sum1 = v1 + v3
+dat 
+```
+
+Chú ý là dataframe `dat` không có biến `sum1`!
+
+## Mã hoá (coding)
+
+Trong khi phân tích dữ liệu, chúng ta có khi phải mã hoá dữ liệu. Mã hoá là một hình thức hoán chuyển dữ liệu.  Chẳng hạn như trong dataframe `data` trên, thay vì `sex` có giá trị là "F" và "M", chúng ta có thể mã hoá thành số 1 và 2 và đặt trong một biến mới có tên là `gender`.
+
+Các hàm dưới đây tạo ra một dataframe có tên là `data`:
+
+```{r, eval=FALSE}
+age = c(18, 21, 35, 50) 
+sex = c("M", "F", "M", "F")
+weight = c(60.3, 48.5, 62.0, 47.2) 
+data = data.frame(age, sex, weight) 
+```
+
+Chúng ta muốn tạo ra một biến mới có tên là `gender` (gắn liền với `data`), với điều kiện là nếu `sex` là "$M$" thì `gender` là 1, và sex là "$F$" thì `gender` là 2:
+
+```{r, eval=FALSE}
+data$gender[sex=="M"] <- 1
+data$gender[sex=="F"] <- 2
+data 
+```
+
+Trong ví dụ trên (biến có hai giá trị) chúng ta cũng có thể dùng hàm `ifelse` đơn giản hơn: 
+
+```{r, eval=FALSE}
+data$gender = ifelse(data$sex=="M", 1, 2) 
+```
+
+Hàm trên có thể đọc là: "nếu sex có giá trị '$M$' thì `gender` có giá trị 1; còn lại là `gender` có giá trị 2".
+
+Kết quả là data có thêm một biến mới như sau:
+
+```{r}
+data
+```
+
+Tương tự, chúng ta có thể tạo ra biến mới gọi là `agegroup` (nhóm tuổi) theo điều kiện trên và dưới 20 tuổi như sau: 
+
+```{r, eval=FALSE}
+data$agegroup[age <= 20] <- "Under 20"
+data$agegroup[age > 20] <- "Over 20"
+```
+
+Lệnh trên có nghĩa là biến `agegroup` là một biến phân nhóm có hai nhóm dưới 20 tuổi và trên 20 tuổi: 
+
+```{r}
+data
+```
+
+Thỉnh thoảng, chúng ta cần phân chia một biến liên tục thành nhiều nhóm. Chẳng hạn như biến *body mass index* (`bmi`) là một biến liên tục, có thể chia thành 3 nhóm: thiếu cân, bình thường, quá cân, và béo phì theo tiêu chuẩn: 
+
+   --------------------- --------------
+   bmi < 18.5            là thiếu cân
+   bmi từ 18.5 đến 24.9  là bình thường
+   bmi từ 25.0 đến 29.9  là quá cân
+   bmi bằng hoặc trên 30 là béo phì
+   --------------------- --------------
+
+Trong $R$, chúng ta cũng có thể tạo ra một biến mới, tạm gọi là "`obesity`" như sau: 
+
+```{r, eval=FALSE}
+data$obesity[bmi < 18.5] = "Underweight" 
+data$obesity[bmi >= 18.5 & bmi <= 24.9] = "Normal" 
+data$obesity[bmi >= 25.0 & bmi <= 29.9] = "Overweight" 
+data$obesity[bmi >= 30.0] = "Obese" 
+```
+
+Chú ý biến *obesity* là một *factor*.
+
+### ifelse{-}
+
+Đối với phân thành 2 nhóm, cú pháp đơn giản hơn. Chỉ cần `ifelse` là đủ. Ví dụ: chúng ta muốn chia `bmi` thành hai nhóm béo phì và không béo phìtheo tiêu chuẩn như sau:
+
+   ------------- ----------------------------
+   nếu bmi >= 30 thì obesity là béo phì 
+   nếu bmi < 30  thì obesity là không béo phì
+   ------------- ----------------------------
+Cách triển khai trong R là: 
+
+```{r, error=TRUE, eval=FALSE}
+obesity = iflese(bmi >= 30.0, "Obese", "Non-obese")
+```
+
+## Làm việc với data frame
+
+### Hàm subset
+
+Trong phân tích dữ liệu, có khi do nhu cầu khai thác, chúng ta chỉ làm việc với một phần của dữ liệu. Hàm `subset` trong $R$ có thể giúp chúng ta chọn phần của dữ liệu để phân tích. Chẳng hạn như trong dataframe `data` trên, chúng ta muốn làm việc trên nhóm nữ và tạo ra một dataframe mới tạm gọi là `fem`:
+
+```{r, eval=FALSE}
+fem = subset(data, sex=="F")
+```
+
+Hàm dưới đây tạo ra một dataframe mới với điều kiện là nam trên 20 tuổi: 
+
+```{r, eval=FALSE}
+male20 = subset(data, sex=="M" & age>20)
+```
+
+### Hàm merge
+
+Trong nhiều trường hợp chúng ta có hai hay nhiều hơn hai dataframe, và chúng ta muốn hợp nhất thành một dataframe để tiện phân tích. Dĩ nhiên, hai dữ liệu phải có chung một biến số để hợp nhất. Ví dụ như chúng ta có `dat1` dưới đây gồm 4 dòng và 2 cột:
+
+```{r}
+id = c(1,2,3,4)
+sex = c("M","F","M","F")
+dat1 = data.frame(id,sex)
+```
+
+và `dat2` gồm có 5 dòng với 2 cột. Chú ý cả hai dataframe có cùng một cột chung là `id`.
+
+```{r}
+id = c(1,2,3,4,5)
+age = c(21,34,45,32,18)
+dat2 = data.frame(id,age)
+```
+
+Để hợp nhất 2 dataframe, chúng ta dùng hàm merge như sau: 
+
+```{r}
+dat3 = merge(dat1, dat2, by="id")
+dat4 = merge(dat1, dat2, by="id", all.x=T, all.y=T)
+```
+
+Kết quả của `dat3`. Chú ý dataframe này chỉ có 4 dòng, vì dòng 5 của `dat2` không có `id` trong `dat1`:
+
+```{r}
+dat3
+```
+
+Kết quả của `dat4` sẽ có 5 dòng, nhưng biến `sex` có 1 giá trị trống (NA):
+
+```{r}
+dat4
+```
+
+### Hoán chuyển dataframe
+
+#### melt: Hoán chuyển từ cột sang dòng {-}
+
+Giả dụ chúng ta có dữ liệu dat của 4 đối tượng nghiên cứu, và mỗi đối tượng được đo lường 3 lần (day1, day2, day3) như sau:
+
+```{r, echo=FALSE}
+id = c(1,2,3,4)
+sex = c("M","F","M","F")
+group = c(1,1,2,2)
+day1 = c(15,16,21,31)
+day2 = c(17,15,23,35)
+day3 = c(19,20,19,33)
+dat = data.frame(id,sex,group,day1,day2,day3)
+```
+
+```{r}
+dat
+```
+
+Nhưng để phân tích phương sai, chúng ta cần hoán chuyển sang cột như sau:
+
+```{r, echo=FALSE, message=FALSE}
+require(reshape2)
+temp = subset(dat, id <= 2)
+d = melt(temp, id=c("id", "sex", "group"), measure.vars=c("day1", "day2", "day3"))
+d[order(d$id),]
+```
+
+Để đạt mục đích trên, chúng ta dùng hàm melt trong package `reshape2` như sau:
+
+```{r, results=FALSE}
+require(reshape2)
+d = melt(dat, id=c("id", "sex", "group"), measure.vars=c("day1", "day2", "day3"))
+```
+
+#### cast: Hoán chuyển từ dòng sang cột {-}
+
+Thỉnh thoảng, chúng ta cần chuyển dataframe từ dòng sang cột. Chẳng hạn như dữ liệu d trên đang ở dạng: 
+
+```{r}
+d
+```
+
+Để chuyển sang 3 cột cho 3 ngày, chúng ta dùng hàm `cast` trong package `reshape` như sau: 
+
+```{r, resutls=FALSE, message=FALSE}
+library(reshape)
+d2 = cast(d, id+sex+group ~ variable)
+```
+
+### Một số hàm có ích
+
+Trong việc sắp xếp dữ liệu và mô phỏng, $R$ có một số hàm giúp chúng ta làm việc có năng suất cao. Những hàm này tự động hoá một số chức năng, và có thể ứng dụng trong nhiều tình huống, đặc biệt là mô phỏng. 
+
+<span style="color:red;font-weight:bold">seq()</span> là hàm dùng để tạo ra một dãy số liệu. Ví dụ: `x = seq(from=1, to=10, by=0.5)` sẽ tạo ra một biến số x có giá trị từ 1 đến 10, với khoảng cách là 0.5. Nói cách khác, x là một vector: 1.0, 1.5, 2.0, 2.5, ..., 10.0. 
+
+<span style="color:red;font-weight:bold">rep()</span> là hàm lặp lại một đối tượng nhiều lần. Chẳng hạn như chúng ta muốn tạo ra một biến số group với 10 giá trị "A", chúng ta có thể dùng rep như sau:
+
+```{r, results=FALSE}
+group = rep("A", 10)
+```
+
+Hàm dưới đây sẽ tạo ra biến số group với 10 giá trị "A" và 15 giá trị "B":
+
+```{r, results=FALSE}
+group = c(rep("A", 10), rep("B", 15))
+```
+
+Hàm dưới đây sẽ tạo ra biến số val với 10 giá trị 1,2 lặp lại 5 lần: 
+
+```{r}
+val = rep(c(1,2), 5)
+val
+```
+
+<span style="color:red;font-weight:bold">cut()</span> là hàm dùng để chia một biến liên tục thành nhiều nhóm. Chẳng hạn như chúng ta có một biến liên tục age như sau: 
+
+```{r}
+x = c(17, 19, 22, 43, 14, 8, 12, 19, 20, 51, 8, 12, 27, 31)
+```
+
+và chúng ta muốn chia thành 3 nhóm và đặt kết quả trong biến y, hàm dưới đây sẽ đáp ứng nhu cầu đó: 
+
+```{r}
+y = cut(x, 3, labels=c("Low", "Medium", "High")) 
+cbind(x, y)
+```
+
+Hàm `cut()` chia nhóm một cách "tự động", tức dựa vào bách phân vị. Một cách khác là dùng hàm `cut2()` trong `Hmisc` để chia nhóm theo một giá trị. Chẳng hạn như nếu chúng ta muốn chia biến x thành 3 nhóm: dưới 20, từ 20 đến 30, và trên 30: 
+
+```{r, message=FALSE}
+library(Hmisc)
+y1 = cut2(x, c(20, 30))
+cbind(x, y1)
+```
+
+## Biên tập dữ liệu với package "dplyr"
+
+Trong biên tập dữ liệu (data editing), chúng ta thường thực hiện một số thao tác như chọn dòng, chọn cột, thêm cột, sắp xếp thứ tự theo một hay nhiều biến số, tính toán đơn giản, lấy mẫu, v.v. Tất cả những thao tác này được triển khai trong package `dplyr` qua 4 hàm chính như sau:
+
+`filter, arrange, select, mutate, và summrise`. 
+
+Để hiểu tác dụng của các hàm này, chúng ta bắt đầu bằng dữ liệu `birthwt` như sau:
+
+```{}
+setwd("C:/work/stats")
+```
+
+```{}
+bw = read.csv("birthwt.csv")
+head(bw)
+```
+
+<span style="font-weight:bold">Hàm filter()</span> cho phép chúng ta chọn một phần dữ liệu trong một data.frame nhưng theo dòng. Chẳng hạn như trong dữ liệu trên, chúng ta muốn chọn những dữ liệu với điều kiện `race` là 1 và `bwt` dưới 2500, lệnh sau đây sẽ đáp ứng yêu cầu đó: 
+
+```{}
+library(dplyr)
+d1 = filter(bw, race==1, bwt<2500)
+d1
+```
+
+Kết quả là: 
+
+```{}
+d1
+```
+
+<span style="font-weight:bold">Hàm select()</span> có thể dùng để chọn một phần dữ liệu trong một data.frame nhưng theo biến số. Chẳng hạn như trong dữ liệu trên, chúng ta muốn chọn ra 3  biến  `id`, `bwt` và `age`:
+
+```{}
+d2 = select(bw, id, age, bwt)
+head(d2) 
+```
+
+Cũng có thể chọn nhiều biến bằng cách dùng "`:`" như ví dụ dưới đây chọn các biến số bắt đầu từ `race` đến biến `bwt`:
+
+```{}
+d2 = select(bw, race:bwt)
+```
+
+<span style="font-weight:bold">Hàm mutate()</span> có thể dùng để tạo biến số mới dựa trên những biến số đang có. Chẳng hạn như biến `lwt` (cân nặng của mẹ được tính bằng pound) và chúng ta muốn tạo biến số bằng kilogram và gọi biến đó là `mother.wt`, và biến cân nặng của trẻ bằng kilogram (thay vì gram) và gọi tên biến mới là `weight`:
+
+```{}
+d3 = mutate(bw, mother.wt = lwt*0.453592, weight = bwt/1000) 
+head(d3)
+```
+
+<span style="font-weight:bold">Hàm arrange()</span> có thể dùng để sắp xếp (sort) dữ liệu theo thứ tự của một hay nhiều biến số. Chẳng hạn như hàm dưới đây sẽ sắp xếp dữ liệu theo thứ tự của biến `mother.wt` và `weight`:
+
+```{}
+d4 = arrange(d3, mother.wt, weight)
+head(d4) 
+```
+
+<span style="font-weight:bold">Hàm sample_n()</span> và <span style="font-weight:bold">sample_frac()</span> có thể dùng để chọn mẫu ngẫu nhiên theo dòng hoặc theo xác suất định trước. Lệnh dưới đây chọn 10 dòng ngẫu nhiên từ dữ liệu `bw`:
+
+```{}
+d5 = sample_n(bw, 10)
+d5
+```
+
+Lệnh dưới đây chọn ngẫu nhiên 5% từ dữ liệu `bw`:
+
+```{}
+d6 = sample_frac(bw, 0.05)
+d6
+```
+
+<span style="font-weight:bold">Hàm summarise()</span> và <span style="font-weight:bold">group_by()</span> rất có ích trong việc tính toán theo nhóm. Chẳng hạn như chúng ta muốn tính giá trị trung bình của biến `age`, `lwt` và `bwt` theo `smoke`, và tạo ra những biến mới có giá trị trung bình với tên là `mean.age`, `mean.lwt`, và `mean.bw`:  
+
+```{}
+group = group_by(bw, smoke)
+d7 = summarise(group, 
+count = n(),
+mean.age = mean(age, na.rm=T), 
+mean.lwt = mean(lwt, na.rm=T),
+mean.bw = mean(bwt, na.rm=T))
+d7
+```
+
+Tất cả các hàm trong dplyr có thể thực hiện trong $R$ (mà không cần `dplyr`), nhưng các hàm vừa mô tả trên thì dễ hiểu hơn và dễ sử dụng hơn. Dĩ nhiên, chúng ta cũng có thể kết hợp các hàm trong `dplyr` và các hàm cơ bản trong $R$ để xử lí những dữ liệu lớn và phức tạp. 
+
+## Biến phụ thuộc và 1 biến tiên lượng
+
+Phần lớn các mô hình thống kê phân biệt hai loại biến số: biến phụ thuộc (dependent variables) và biến độc lập (independent variable), có khi còn gọi là biến *tiên lượng* (predictor variable). Biến phụ thuộc có khi còn gọi là *outcome*. Chẳng hạn như nếu chúng ta muốn so sánh độ tuổi giữa nam và nữ, thì độ tuổi là biến phụ thuộc, và giới tính là biến tiên lượng. 
+
+Cú pháp chuẩn của R trong việc mô tả mối liên quan giữa biến phụ thuộc (*y*) và biến tiên lượng (*x*) là: 
+
+
+$$y \sim x$$
+
+trong đó, kí hiệu `~` (tilde) có thể đọc "hàm số của". Do đó, `y ~ x` có thể đọc là "y là hàm số của x", hay "y phụ thuộc vào x." Điều đó cũng có nghĩa thực tế trong việc tổ chức dữ liệu cho phân tích. Bởi vì cú pháp trên phân biệt biệt `y` và `x` là hai biến, nên dữ liệu cũng phải sắp xếp thành hai biến riêng biệt. 
+
+Chẳng hạn như chúng ta có dữ liệu y cho 2 nhóm A và B như sau:
+
+   **Nhóm A**   **Nhóm B**
+  ------------ ------------
+  13.2         21.3
+  11.7         19.3
+  15.8         17.8
+               15.4
+
+thì cách sắp xếp dữ liệu trong R phải theo hai biến. Biến thứ nhất là nhóm (tạm gọi là group) và biến thứ hai là y: 
+
+   *group*   *y*
+  --------- ------
+  A         13.2
+  A         11.7
+  A         15.8
+  B         21.3
+  B         19.3
+  B         17.8
+  B         15.4
+
+
+và khi nhập dữ liệu trong R: 
+
+```{r, results='hide'}
+group = c("A", "A", "A", "B", "B", "B", "B") 
+y = c(13.2, 11.7, 15.8, 21.3, 19.3, 17.8, 15.4) 
+dat = data.frame(group, y) 
+```
+
+hoặc có thể làm gọn hơn bằng cách dùng hàm rep:  
+
+```{r, results='hide'}
+group = c(rep("A", 3), rep("B", 4))
+y = c(13.2, 11.7, 15.8, 21.3, 19.3, 17.8, 15.4) 
+dat = data.frame(group, y) 
+```
+
+Do đó, khi mô tả dữ liệu theo nhóm, ví dụ như biểu đồ hộp, chúng ta chỉ cần viết ngắn gọn: 
+
+```{r, eval=FALSE}
+boxplot(y ~ group)
+```
+
+hay kiểm định t: 
+
+```{r, eval=FALSE}
+t.test(y ~ group) 
+```
+
+**Biến phụ thuộc và nhiều biến tiên lượng**
+
+Cách tổ chức dữ liệu trên cũng được áp dụng cho nhiều biến tiên lượng. Chẳng hạn như một nghiên cứu theo dõi hai nhóm bệnh nhân, và mỗi bệnh nhân được đo lường ở 3 thời điểm như sau: 
+
+   **ID**   **Group**   **Time 1**   **Time 2**   **Time 3**
+  -------- ----------- ------------ ------------ ------------
+  1        A           1.10         1.12         1.11
+  2        A           0.80         0.85         0.83
+  3        A           0.76         0.75         0.77
+  4        B           0.90         0.92         0.95
+  5        B           0.95         0.97         1.00
+  6        B           1.02         1.07         1.10
+  7        B           0.89         0.87         0.92
+  
+Cách tổ chức dữ liệu như trên rất khó dùng cho phân tích chuyên sâu nhằm đánh giá thay đổi của bệnh nhân theo thời gian (ví dụ mô hình phân tích hỗn hợp). Bởi vì chúng ta muốn biết mức độ dao động giữa các thời điểm trong mỗi bệnh nhân, nên thời gian cần phải có một biến riêng. Cách tổ chức lí tưởng cho R là: 
+
+ **ID**   **Group**   **Time**   **y**
+-------- ----------- ---------- -------
+  1        A           1          1.10
+  1        A           2          1.12
+  1        A           3          1.11
+  2        A           1          0.80
+  2        A           2          0.85
+  2        A           3          0.83
+  3        A           1          0.76
+  3        A           2          0.75
+  3        A           3          0.77
+  4        B           1          0.90
+  4        B           2          0.92
+  4        B           3          0.95
+  5        B           1          0.95
+  5        B           2          0.97
+  5        B           3          1.00
+  6        B           1          1.02
+  6        B           2          1.07
+  6        B           3          1.10
+  7        B           1          0.89
+  7        B           2          0.87
+  7        B           3          0.92
+
+Cần chú ý rằng sắp xếp hay "tổ chức" dữ liệu là một bước rất quan trọng trong phân tích thống kê. Có thể nói rằng trong nhiều trường hợp, thời gian để sắp xếp dữ liệu chiếm đến 90%, còn thời gian phân tích chỉ chiếm khoảng 10% quĩ thời gian. Một khi bước sắp xếp dữ liệu hoàn chỉnh thì việc phân tích sẽ rất thuận tiện. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

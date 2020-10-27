@@ -2,4 +2,4 @@ book_filename: "Phan tich DU LIEU voi R"
 language:
   ui:
     chapter_name: "Chương "
-delete_merged_file: true
+delete_merged_file: True
